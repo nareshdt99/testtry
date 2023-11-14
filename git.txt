@@ -1,0 +1,698 @@
+git 
+
+scm (source code management)
+
+work dir>stage/index> local rep (branch)
+
+why git
+1. speed
+bacup -incremental (consumes less storage)
+2. parallel branching
+3. fully distributed
+
+git is called distributed version control system
+
+practice
+
+yum install git -y
+
+which git
+
+git --version
+
+git config --global user.name "naresh"
+git config --global user.email "nareshdt99@gmail.com"
+git congig --list
+
+
+go to mumbai server
+
+makdir mumbaigit
+ls
+cd mumbaigit/
+
+git init
+
+pwd
+ls-a
+
+vi myfile
+
+to see sttus of file : git status
+
+sending file from workspace to staging area (add)
+git add . (. all files)
+
+sending file from stage to staging arealocal repo (commit)
+
+git commit -m "1st commit from mumbai"
+git status
+
+ls -a
+
+git log
+
+git show first 7 charetors  
+
+adding central repo to local repo
+
+
+git remote add origin https://github.com/nareshdt99/naresh.git
+
+git branch -M main
+
+git branch
+
+git push -u origin main 
+
+
+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 new key
+
+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
+
+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
+
+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
+
+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
+
+
+1.gitignore
+
+vi .gitignore 
+*.class
+
+2.git log to check commits
+
+git log --oneline
+
+3. git log --grep "london"
+
+4. git show
+
+branch
+
+git branch 
+git log --oneline
+
+creating new branch 
+git branch new
+ to verify git branch
+
+to change default braanch 
+git checkout new
+to check git branch
+
+
+merging 
+-> pull,copy,paste
+
+git branch (main) since pull 
+
+git log --oneline
+
+git merge new
+
+git log --oneline
+
+pushing
+git push origin main 
+ give credentials of github 
+
+go to github and verify 
+
+
+merge conflict 
+1.when two branches are having same file name  but diff content in it
+->when we merge conflict occurs 
+
+git branch    -main
+vi file1 (hi)
+git add .
+git commit -m ""
+
+git checkout new
+vi file1 (hello)
+git add .
+got commit -m ""
+
+merge
+git checkout main (supoose to be in main)
+
+git merge new
+
+conflict arises
+
+then 
+vi file1
+it shows error 
+
+change or modify as per wish 
+
+git add .
+git commit -m "fixed conflict"
+
+ls
+
+git log --oneline
+
+git show 123345
+
+
+add mutiple users to the group 
+useradd file1
+useradd file2
+groupadd devops
+
+vi /etc/group
+
+addd users manually , by pressing i
+
+
+,
+creating directoty and file in it and pushing to central repo
+makdir demodir
+touch demodir/file1
+ls demodir/
+git status
+git add.
+git commit -m ""
+
+git push origin main
+
+credentials 
+
+lecture-5
+git stash (temp storage inside repo)
+
+ls
+touch testfile
+ls
+git add .
+git commit -m "testfile"
+
+vi testfile 
+task A(BLUE COLOR(50%))
+:WQ!
+Cat testfile
+git stash (data moved to statch temp storage)
+cat testfile (empty)
+
+vi testfile
+task b(pink color(50%))
+:wq!
+cat testfile
+git stash (data moved to statch temp storage)
+cat testfile (empty)
+
+
+git stash list
+storage numbering
+latest one(0), follwed by 1,2,23,...
+
+bring old data (1)
+git stash apply stash@{1}
+
+vi testfile
+add some more data
+after adding
+task A(BLUE COLOR(100%))
+git add .
+git commit -m "finished blue task"
+
+now bringing pink to workspace, conflict occurs (then need to erase blue data manually )
+
+git stash apply stash @{)}
+
+conflict
+
+vi testfile 
+(remove manually )
+task b(pink color(100%))
+git aadd .
+git commit -m "finishedpink task"
+
+moving file from workspace to stash (cut paste)
+moving file from stash to workspace(copy paste)
+**still files exist in stash**
+git stash clear
+git stash list
+
+
+Reset & Change
+after adding to add, to statge area find bug 
+git reset used
+
+vi nareshfile
+hello hnaresh
+git add .
+git status
+cat naresh (found mistake)(bring snapshot back)
+git reset . or filename
+git status
+this works only before commit
+
+to remove snapshot also workspace file
+git reset --hard
+wont find nareshfile
+
+
+wt if it happens after commit
+git revert
+vi nareshfile
+this is my //code
+git add .
+git commit -m "my latest code"
+cat nareshfile (found // in code)
+git revert commitid
+
+file deleted from workspace, file deleted from staging area,
+sends new dommit , by saying previous commit
+
+git log --oneline
+git revert commitid(I545555)
+
+git log --oneline
+
+
+removing files (already added & commited files)
+2 methods 
+1. rm -rf (linux)
+2.git rm filename (git)
+if we remove file from workspace it by auto removes same file from staging area
+git commit -m "deleting file"
+
+git log --oneline
+
+send it to cental repo
+git push origin main
+enter credentials
+
+remove untracked file (file is in only workspace ,not added neither commited)
+
+create 100 files
+touch {1..100)
+git status (redone)
+
+git clean -n (dry run)
+git clean -f (forcefully)
+
+
+lec-6
+
+tag 
+get into repo
+git log --oneline
+
+git tag -a test -m "my imp commit" commit id(65456156)
+
+test tag is assigned to commit id
+
+git tag 
+
+git tag --oneline
+
+to check 
+git show test
+
+to delete atg 
+git tag -d test
+to check
+git log --oneline
+
+
+clone
+git clone (central repo code)
+
+
+to work in central repo directly 
+github 
+to merge two branches in central repo need to do 2 tasks
+1.create pull request
+compare and pull request,create pull request
+2.merge pull request
+
+delete branch (go to branchs and dlete it)
+git branch -d new
+git branch 
+
+thumb rule: always need to pull first , thrn need to push 
+
+
+to push one branch from local dir to onother btanch in central repo
+local repo >branch name is naresh
+central repo > branch name is pragya
+to push content in naresh branch to pragya branch 
+git push origin naresh:pragya
+
+lets pull pragya branch to local main branch
+git checkout main
+git pull origin pragya:main
+
+push content from local main to central main
+
+git push origin main:main (local repo:central repo)
+
+
+
+mutliple teams work scenario
+
+team a,b,c are local repos , teamx is central repo
+
+push -through error (need to do pull first due to extra added content in it)
+pull- conflict occues  (need to cahne)
+then push
+
+
+lec-7
+github
+working on private repo in github
+
+public -while pushing need to give credentials, while pulling no credentals are needed
+private- while pulling and pushing credentials are needed
+
+hw to avoid credentials
+ssh -keygen 
+cd ..
+pwd
+
+ls -a
+can find  .ssh
+cd .ssh
+cat id_rsa.pub
+copy content in git hub
+
+go to setting and ssh keys add it
+
+
+git on windows
+
+real time scenarios 
+=================================================================================================
+git init
+  413  git branch
+  414  git checkout -b staging
+  415  git branch
+  416  git checkout main
+  417  git branch
+  418  git checout staging
+  419  git checkout staging
+  420  git branch
+  421  ls -l
+  422  git push orign staging
+  423  git push add origin
+  424  ls -l
+  425  vi Jenkinsfile
+  426  git push
+  427  git push -u origin staging
+  428  git pull
+  429  git push -u origin main
+  430  git push -u origin staging
+  431  vi Jenkinsfile
+  432  ls -l
+  433  git push -u origin main
+  434  git branch
+  435  vi abc
+  436  ls -l
+  437  git push -u origin main
+  438  git push -u origin staging
+  439  git commit -a -m "first commit"
+  440  git config --global user.email "nar@example.com"
+  441  git config --global user.name "Nar"
+  442  git add .
+  443  git commit -m "first commit"
+  444  git push -u origin staging
+  445  }
+  446  git push -u origin staging
+  447  git pull
+  448  ls -l
+  449  cat Jenkinsfile
+  450  ls -l
+  451  git branch
+  452  git checkout main
+  453  ls -l
+  454  git merge staging
+  455  git push
+  456  git branch
+  457  git checkout -b Qa
+  458  git branch
+  459  ls -l
+  460  rm -rf abc
+  461  ls -l
+  462  git push
+  463  git push -u origin Qa
+  464  ls -l
+  465  git branch
+  466  git push -u origin Qa
+  467  git add .
+  468  git commit -m "2nd commit"
+  469  git push
+  470  git checkout main
+  471  git branch
+  472  git merge Qa
+  473  git push
+  474  git branch -d Qa
+  475  git push
+  476  git branch
+  477  git push -u origin main
+  478  git branch
+  479  git add .
+  480  git commit -m "3rd commit"
+  481  git push
+  482  git fetch --prune
+  483  git branch
+  484  git push origin --name Qa
+  485  git push origin --delete Qa
+  486  git branch
+  487  git checkout staging
+  488  ls -l
+  489  git checkout -b test
+  490  git add .
+  491  git commit -m "4th commit"
+  492  git push
+  493  git push -u origin test
+  494  git push --delete test
+  495  git push origin --delete test
+  496  git branch
+  497  git branch
+  498  git push -u origin test
+  499  git branch -d test
+  500  git checkout main
+  501  git branch -d test
+  502  git branch
+  503  git pull
+  504  git pull https://github.com/nareshdt99/mainproject/tree/test
+  505  git pull
+  506  git push
+  507  cd
+  508  cd /.ssh
+  509  ls -al
+  510  cd .ssh
+  511  ls -l
+  512  cat rsa
+  513  cat id_rsa
+  514  cat id_rsa.pub
+  515  git push -u origin main
+  516  cd
+  517  ls -l
+  518  cd testb/
+  519  ls -l
+  520  cd mainproject/
+  521  ls -l
+  522  git branch
+  523  git checkout staging
+  524  ls -l
+  525  vi abc
+  526  git add .
+  527  git commit -m "5th commit"
+  528  git push -u origin staging
+  529  ssh -T git@github.com
+  530  git push -u origin main
+  531  git branch
+  532  ls -l
+  533  vi abc
+  534  ls -l
+  535  git add .
+  536  git commit -m " 6th commit"
+  537  git push -u origin staging
+  538  git remote add origin https://github.com/nareshdt99/mainproject
+  539  git branch
+  540  git branch origin --delete test
+  541  history
+devops@master:~/testb/mainproject$ git push origin --delete test
+=========================================================================================================
+to creare feature branch (hotfix)
+git checkout -b hotfix
+vim index.xml
+git add .
+git commit -m "comment"
+git push -u origin hotfix
+##this pushes hotfix branch to github (remote repo)
+
+to merge hotfix to main branch 
+##switch to main branch 
+git checkout main
+##merge hotfix to main
+git merge hotfix
+
+this will deploy code to main branch (mainline)
+
+=================================================================================
+shell script
+
+#####################################
+# Author name : naresh
+# Date : 1/10/2023
+# version : v1
+#####################################
+
+set -x # Debug mode
+set -e # exit the script when there is a error
+set -0 pipefail
+
+# set -xeo pipefail
+
+df -h
+
+free -g
+
+nproc
+
+ps -ef | grep "python3"
+
+ps -ef | grep "python3" | awk -F" " '{print $2}'
+
+# curl share the output
+# wget download the files form the internet
+# find sudo find / -name pam.d
+# kill -9 1111
+# trap
+
+============================================================
+cat number.sh
+#!/bin/bash
+
+#########################
+# Author: zzzzz
+# date : 1/10/2023
+#########################
+
+# divisible by 3 , divisible by 5 , not 3*5=15
+for i in {1..100}; do
+if ([ `expr $i % 3` == 0 ] || [ `expr $i % 5` == 0 ]) && [ `expr $i % 15` != 0 ];
+then
+        echo $i
+fi;
+done
+==========================================================
+devops@master:~$ cat mississipi.sh
+#!/bin/bash
+x=mississipi
+grep -o "s" <<<"$x" | wc -l
+=========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
